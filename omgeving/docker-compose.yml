@@ -4,7 +4,7 @@ services:
   nginx:
     image: nginx:1.19
     ports:
-      - 80:80
+      - 70:80
     volumes:
       - ./src:/var/www/php:ro
       - ./.docker/nginx/conf.d:/etc/nginx/conf.d:ro
@@ -22,7 +22,7 @@ services:
   mysql:
     image: mysql:8
     environment:
-      MYSQL_ROOT: root
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: demo
     volumes:
       - ./.docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf.ro
@@ -38,6 +38,6 @@ services:
       - mysql
 
 volumes:
-mysqldata:
+  mysqldata:
 
 
