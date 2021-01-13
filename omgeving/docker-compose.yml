@@ -10,7 +10,8 @@ services:
       - ./.docker/nginx/conf.d:/etc/nginx/conf.d:ro
     depends_on:
       - php
-
+      
+  # PHP Service
   php:
     build: ./.docker/php
     working_dir: /var/www/php
@@ -19,6 +20,7 @@ services:
     depends_on:
       - mysql
 
+  # MySQL Service
   mysql:
     image: mysql:8
     environment:
@@ -36,8 +38,8 @@ services:
       PMA_HOST: mysql
     depends_on:
       - mysql
-
+      
+# Volumes
 volumes:
   mysqldata:
-
 
