@@ -1,18 +1,16 @@
-version: "3.7"
+version: "3.8"
 
-# Services
 services:
-  # Nginx Service
   nginx:
-    image: nginx:1.17
+    image: nginx:1.19
     ports:
-      - 80:80
+      - 70:80
     volumes:
       - ./src:/var/www/php:ro
       - ./.docker/nginx/conf.d:/etc/nginx/conf.d:ro
     depends_on:
       - php
-
+      
   # PHP Service
   php:
     build: ./.docker/php
@@ -29,8 +27,9 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: demo
     volumes:
-      - ./.docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf:ro
-      - mysqldata:/var/lib/mysql
+      - ./.docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf.ro
+      - mysqldata:/lib/mysql
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:5
     ports:
@@ -39,7 +38,8 @@ services:
       PMA_HOST: mysql
     depends_on:
       - mysql
-
+      
 # Volumes
 volumes:
   mysqldata:
+
